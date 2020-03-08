@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "intelliSenseMode": "clang-x64",
+            "includePath": [
+                "${workspaceFolder}",
+                "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++",
+                "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/x86_64-w64-mingw32",
+                "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/backward",
+                "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include",
+                "d:/TDM-GCC-64/x86_64-w64-mingw32/include",
+                "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include-fixed"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "__GNUC__=7",
+                "__cdecl=__attribute__((__cdecl__))"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++",
+                    "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/x86_64-w64-mingw32",
+                    "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/backward",
+                    "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include",
+                    "d:/TDM-GCC-64/x86_64-w64-mingw32/include",
+                    "d:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/5.1.0/include-fixed"
+                ]
+            },
+            "compilerPath": "D:\\TDM-GCC-64\\bin\\gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++11"
+        }
+    ],
+    "version": 4
+}
