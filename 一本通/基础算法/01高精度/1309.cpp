@@ -1,48 +1,55 @@
 #include <algorithm>
+#include <cstring>
 #include <iostream>
+#include <vector>
 using namespace std;
-string s, t;
+string s;
+vector<int> m;
 int n;
-int word[] = {'0', '1', '2', '3', '4', '5', '6', '7',
-              '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-int chr2int(char c) {
-    if (c >= 'A' && c <= 'Z') return c - 'A' + 10;
-    if (c >= 'a' && c <= 'z') return c - 'a' + 10;
-    return c - '0';
+
+bool check(vector<int>& v) {
+    int l = 0, r = v.size() - 1;
+    while (l < r) {
+        if (v[l] != v[r]) return false;
+        l++, r--;
+    }
+    return true;
 }
 
-string add(string a, string b) {
-    string c;
+void add(vector<int>& a) {
+    vector<int> b = a;
     reverse(a.begin(), a.end());
-    reverse(b.begin(), b.end());
     int la = a.size(), lb = b.size();
-    int t = 0, lc = 0;
+    int t = 0;
     for (int i = 0; i < la || i < lb; i++) {
-        if (i < la) t += chr2int(a[i]);
-        if (i < lb) t += chr2int(b[i]);
-        c.push_back(word[t % n]);
+        if (i < la) t += a[i];
+        if (i < lb) t += b[i];
+        a[i] = t % n;
         t /= n;
     }
-    if (t) c.push_back(word[t]);
-    return c;
+    if (t) a.push_back(t);
 }
 
 int main() {
     cin >> n >> s;
-    int cnt = 0;
-    while (1) {
-        t = s;
-        reverse(t.begin(), t.end());
-        if (t == s) {
-            cout << cnt;
-            return 0;
-        }
-        s = add(s, t);
-        cnt++;
-        if (cnt > 30) {
+    for (int i = s.size() - 1; i >= 0; i--) {
+        if (s[i] >= 'a' && s[i] <= 'z')
+            s[i] -= 'a' - 10;
+        else if (s[i] >= 'A' && s[i] <= 'Z')
+            s[i] -= 'A' - 10;
+        else
+            s[i] -= '0';
+        m.push_back(s[i]);
+    }
+    int ans = 0;
+    while (!check(m)) {
+        add(m);
+        ans++;
+        if (ans > 30) {
             cout << "Impossible";
             return 0;
         }
     }
+    cout << ans;
     return 0;
 }
