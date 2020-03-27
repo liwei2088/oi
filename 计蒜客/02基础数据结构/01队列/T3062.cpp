@@ -5,8 +5,6 @@ const int N = 100005, M = 1000005;
 int n, q[N];
 bool st[M];
 int main() {
-    freopen("data.in", "r", stdin);
-    freopen("data.out", "w", stdout);
     int x;
     scanf("%d", &n);
     int f = 1, r = 1;
