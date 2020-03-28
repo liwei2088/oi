@@ -1,33 +1,33 @@
-#include <cstdio>
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-const int N = 100005, M = 1000005;
-int n, q[N];
-bool st[M];
+
+const double PI = acos(-1);
+
+int n, f;
+double a[10010];
+
+bool check(double x) {
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) cnt += int(a[i] / x);
+    return cnt >= (f + 1);
+}
+
 int main() {
-    freopen("data.in", "r", stdin);
-    freopen("data.out", "w", stdout);
-    int x;
-    scanf("%d", &n);
-    int f = 1, r = 1;
-    int ans = 0, cnt = 0;
+    int t;
+    double l = 0, r = 0;
+    cin >> n >> f;
     for (int i = 1; i <= n; i++) {
-        scanf("%d", &x);
-        if (!st[x]) {
-            q[r++] = x;
-            st[x] = true;
-            cnt++;
-            ans = max(ans, cnt);
-            continue;
-        }
-        while (q[f] != x) {
-            st[q[f]] = false;
-            f++;
-            cnt--;
-        }
-        f++;
-        q[r++] = x;
+        cin >> t;
+        a[i] = t * t;  
+        r = max(a[i], r);
     }
-    printf("%d", ans);
+    for (int i = 1; i <= 100; i++) {
+        double m = (l + r + 1) / 2;
+        if (check(m))
+            l = m;
+        else
+            r = m - 1;
+    }
+    printf("%.3lf", l * PI);
     return 0;
 }
