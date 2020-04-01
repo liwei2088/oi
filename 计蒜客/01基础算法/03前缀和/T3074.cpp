@@ -1,23 +1,22 @@
 #include <cstdio>
 #include <iostream>
 using namespace std;
-const int MOD = 1E9 + 7;
-int n, q;
-long long a[100005], s[100005];
+const long long MOD = 1000000007;
+long long n, q;
+long long sum[100005], sum2[100005];
 int main() {
-    int l, r;
-    scanf("%d", &n);
+    long long l, r, t;
+    scanf("%lld", &n);
     for (int i = 1; i <= n; i++) {
-        scanf("%lld", &a[i]);
-        a[i] = (a[i] + a[i - 1]) % MOD;
-        s[i] = (s[i - 1] + a[i]) % MOD;
+        scanf("%lld", &t);
+        sum[i] = sum[i - 1] + t;
+        sum2[i] = sum2[i - 1] + sum[i];
     }
-    scanf("%d", &q);
+    scanf("%lld", &q);
     long long ans = 0;
     while (q--) {
-        scanf("%d%d", &l, &r);
-        long long t = a[l - 1] * (r - l + 1) % MOD;
-        ans += (s[r] - s[l - 1] - t) % MOD;
+        scanf("%lld%lld", &l, &r);
+        ans += sum2[r] - sum2[l - 1] - sum[l - 1] * (r - l + 1) % MOD;
         ans %= MOD;
     }
     printf("%lld", ans);
