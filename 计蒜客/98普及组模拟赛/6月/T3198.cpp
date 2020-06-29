@@ -1,35 +1,38 @@
+#include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 15;
-int n, m;
-long long v, ans = 0;
+const int N = 5;
+int n, m, t;
+long long ans = 0;
+
 struct node {
     int x, y;
     long long w;
 } q[N];
+
 bool st[N][N];
-void dfs(int k, long long sum) {
-    if (k == n + 1) {
-        cout << sum << endl;
-        ans = max(ans, sum);
+int a[N];
+
+void dfs(int k) {
+    if (k == m + 1) {
+        for (int i = 1; i <= m; i++) cout << a[i] << " ";
+        cout << s << endl;
+        ans = max(ans, s);
         return;
     }
-    st[q[k].x][q[k].y] = false;
-    dfs(k + 1, sum);
-
-    st[q[k].x][q[k].y] = true;
-    if (st[q[k].x - 1][q[k].y] || st[q[k].x + 1][q[k].y] ||
-        st[q[k].x][q[k].y - 1] || st[q[k].x][q[k].y + 1])
-        sum += q[k].w;
-    else
-        sum += q[k].w - v;
-    dfs(k + 1, sum);
+    int x = q[k].x, y = q[k].y;
+    st[x][y] = true;
+    a[k] = 1;
+    dfs(k + 1);
+    st[x][y] = false;
+    a[k] = 0;
+    dfs(k + 1);
 }
 
 int main() {
-    cin >> n >> m >> v;
-    for (int i = 1; i <= n; i++) cin >> q[i].x >> q[i].y >> q[i].w;
-    dfs(0, 0);
+    cin >> n >> m >> t;
+    for (int i = 1; i <= m; i++) cin >> q[i].x >> q[i].y >> q[i].w;
+    dfs(1);
     cout << ans;
     return 0;
 }
