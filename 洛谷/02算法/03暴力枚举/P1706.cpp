@@ -6,7 +6,7 @@ int n, a[10];
 bool st[10];
 void dfs(int k) {
     if (k == n + 1) {
-        for (int i = 1; i <= n; i++) printf("%3d", a[i]);
+        for (int i = 1; i <= n; i++) printf("%5d", a[i]);
         printf("\n");
         return;
     }
