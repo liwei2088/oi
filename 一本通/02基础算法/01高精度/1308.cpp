@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 string x, y;
-
 bool cmpstr(string a, string b) {
     if (a.size() != b.size())
         return a.size() > b.size();
@@ -30,27 +29,25 @@ string sub(string a, string b) {
     return c;
 }
 
-string mod(string a, string b) {
-    string t;
+void div(string a, string b) {
+    string t, c;
+    bool f = false;
     for (int i = a.size() - b.size() + 1; i >= 1; i--) {
         t = b;
         for (int j = 1; j < i; j++) t.push_back('0');
-        while (cmpstr(a, t)) a = sub(a, t);
+        int k = 0;
+        while (cmpstr(a, t)) {
+            k++;
+            a = sub(a, t);
+        }
+        if (!f && k != 0) f = true;
+        if (f) c.push_back(k + '0');
     }
-    return a;
-}
-
-string gcd(string a, string b) {
-    if (b == "0")
-        return a;
-    else {
-        string r = mod(a, b);
-        return gcd(b, r);
-    }
+    cout << c << endl << a << endl;
 }
 
 int main() {
     cin >> x >> y;
-    cout << gcd(x, y);
+    div(x, y);
     return 0;
 }

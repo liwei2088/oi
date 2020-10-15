@@ -31,8 +31,9 @@ int main() {
     for (int i = mx; i >= 0; i--) {
         if (h[i] == n) {
             cout << i;
-            break;
+            return 0;
         }
     }
+    cout << 0;
     return 0;
 }
