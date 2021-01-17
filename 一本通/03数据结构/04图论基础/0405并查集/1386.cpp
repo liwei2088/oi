@@ -1,3 +1,8 @@
+/**
+ *  根据题意 1 枚举到 n 但是这样做每次都要重新初始化并查集
+ *  多以采用 n~1 每次将j~n所有点合并，如果合并数量>n/2 则满足条件
+ */
+
 #include <cstdio>
 #include <iostream>
 using namespace std;
@@ -15,21 +20,18 @@ int main() {
         cin >> g[i][0];
         for (int j = 1; j <= g[i][0]; j++) cin >> g[i][j];
     }
-    for (int i = n; i >= 1; i--) {  //注意一定要反向枚举 因为求最小序号
+    for (int i = n; i >= 1; i--) {
         for (int j = 1; j <= g[i][0]; j++) {
-            int x = find(i), y = find(g[i][j]);
-            if (x != y) {
-                p[x] = y;
-                int u = c[x];
-                int v = c[y];
-                c[x] += v;
-                c[y] += u;
-            }
-        }
-        for (int j = 1; j <= n; j++) {
-            if (c[j] > n / 2) {
-                cout << j << endl;
-                return 0;
+            if (g[i][j] > i) {  //注意需要合并的是j~n中所有的点
+                int x = find(i), y = find(g[i][j]);
+                if (x != y) {
+                    p[y] = x;
+                    c[x] += c[y];
+                    if (c[x] > n / 2) {
+                        cout << i << endl;
+                        return 0;
+                    }
+                }
             }
         }
     }
