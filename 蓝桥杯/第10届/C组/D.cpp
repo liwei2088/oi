@@ -1,5 +1,12 @@
 #include <iostream>
 using namespace std;
+
+/**
+
+ */
+
+
+
 bool isprime[1000005];
 int primes[1000005], pn;
 
