@@ -1,13 +1,11 @@
+#include <cstdio>
 #include <iostream>
 using namespace std;
-
+string w[] = {"Lying", "Fishing", "Fishing", "Fishing", "Lying"};
 int main() {
     int n;
     cin >> n;
-    n = n % 5;
-    if (n >= 1 && n <= 3)
-        cout << "Fishing" << endl;
-    else
-        cout << "Lying" << endl;
+    int k = n % 5;
+    cout << w[k];
     return 0;
 }
