@@ -138,6 +138,147 @@ int main() {
 }
 ```
 
+#### N皇后问题
+
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=35
+
+```c++
+#include <cstdio>
+#include <iostream>
+using namespace std;
+const int N = 15;
+int n, a[N];
+bool b[N], c[2 * N], d[2 * N];
+
+void dfs(int k) {
+    if (k == n + 1) {
+        for (int i = 1; i <= n; i++) cout << a[i] << " ";
+        cout << endl;
+        return;
+    }
+    for (int i = 1; i <= n; i++) {
+        if (!b[i] && !c[k + i] && !d[k - i + n]) {
+            b[i] = c[k + i] = d[k - i + n] = true;
+            a[k] = i;
+            dfs(k + 1);
+            a[k] = 0;
+            b[i] = c[k + i] = d[k - i + n] = false;
+        }
+    }
+}
+
+int main() {
+    cin >> n;
+    dfs(1);
+    return 0;
+}
+```
+
+
+
+#### 统计出栈
+
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=36
+
+```c++
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int ans, n;
+
+void dfs(int x, int y, int z) {
+    if (z == n) {
+        ans++;
+        return;
+    }
+    if (x > 0 && y < n) dfs(x - 1, y + 1, z);
+    if (y > 0 && z < n) dfs(x, y - 1, z + 1);
+}
+
+int main() {
+    cin >> n;
+    dfs(n, 0, 0);
+    cout << ans;
+    return 0;
+}
+```
+
+#### 统计出栈
+
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=37
+
+```c++
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int ans, n;
+
+void dfs(int x, int y, int z) {
+    if (z == n) {
+        ans++;
+        return;
+    }
+    if (x > 0 && y < n) dfs(x - 1, y + 1, z);
+    if (y > 0 && z < n) dfs(x, y - 1, z + 1);
+}
+
+int main() {
+    cin >> n;
+    dfs(n, 0, 0);
+    cout << ans;
+    return 0;
+}
+```
+
+#### 走迷宫
+
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=38
+
+```c++
+#include <cstdio>
+#include <iostream>
+using namespace std;
+const int N = 20;
+int n, m, g[N][N];
+pair<int, int> p[N * N];
+bool st[N][N], succ;
+int sx, sy, ex, ey;
+int dr[][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
+
+void dfs(int x, int y, int s) {
+    if (x == ex && y == ey) {
+        for (int i = 1; i < s; i++)
+            printf("(%d,%d)->", p[i].first, p[i].second);
+        printf("(%d,%d)\n", ex, ey);
+        succ = true;
+        return;
+    }
+    for (int i = 0; i < 4; i++) {
+        int xx = x + dr[i][0], yy = y + dr[i][1];
+        if (xx >= 1 && xx <= n && yy >= 1 && yy <= m && !st[xx][yy] &&
+            g[xx][yy] == 1) {
+            st[xx][yy] = true;
+            p[s] = {xx, yy};
+            dfs(xx, yy, s + 1);
+            p[s] = {0, 0};
+            st[xx][yy] = false;
+        }
+    }
+}
+
+int main() {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++) cin >> g[i][j];
+    cin >> sx >> sy >> ex >> ey;
+    st[sx][sy] = true;
+    p[1] = {sx, sy};
+    dfs(sx, sy, 2);
+    if (!succ) puts("-1");
+    return 0;
+}
+```
+
 
 ### 数论题目
 
