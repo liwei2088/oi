@@ -5,7 +5,7 @@
 
 #### 全排列
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=31
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=34
 
 ```c++
 #include <cstdio>
@@ -39,7 +39,7 @@ int main() {
 
 #### 组合
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=32
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=35
 
 ```c++
 #include <cstdio>
@@ -73,7 +73,7 @@ int main() {
 
 #### 组合+素数判断
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=33
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=36
 
 ```c++
 #include <cstdio>
@@ -110,7 +110,7 @@ int main() {
 
 #### 二叉树的后序遍历
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=34
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=37
 
 ```c++
 #include <cstdio>
@@ -140,7 +140,7 @@ int main() {
 
 #### N皇后问题
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=35
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=38
 
 ```c++
 #include <cstdio>
@@ -174,38 +174,9 @@ int main() {
 }
 ```
 
-
-
 #### 统计出栈
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=36
-
-```c++
-#include <cstdio>
-#include <iostream>
-using namespace std;
-int ans, n;
-
-void dfs(int x, int y, int z) {
-    if (z == n) {
-        ans++;
-        return;
-    }
-    if (x > 0 && y < n) dfs(x - 1, y + 1, z);
-    if (y > 0 && z < n) dfs(x, y - 1, z + 1);
-}
-
-int main() {
-    cin >> n;
-    dfs(n, 0, 0);
-    cout << ans;
-    return 0;
-}
-```
-
-#### 统计出栈
-
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=37
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=40
 
 ```c++
 #include <cstdio>
@@ -232,7 +203,7 @@ int main() {
 
 #### 走迷宫
 
-视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=38
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=41
 
 ```c++
 #include <cstdio>
@@ -278,6 +249,52 @@ int main() {
     return 0;
 }
 ```
+
+#### 分解数
+
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=42
+
+```c++
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int n, a[55];
+
+void dfs(int k, int s) {
+    if (s == 0) return;
+    if (k > 1) {
+        a[k] = s;
+        if (a[k - 1] <= a[k]) {
+            cout << a[1];
+            for (int i = 2; i <= k; i++) cout << "+" << a[i];
+            cout << endl;
+        }
+    }
+    for (int i = a[k - 1]; i <= s; i++) {
+        a[k] = i;
+        dfs(k + 1, s - i);
+        a[k] = 0;
+    }
+}
+
+int main() {
+    cin >> n;
+    a[0] = 1;
+    dfs(1, n);
+    return 0;
+}
+```
+
+### 骑士巡游
+
+视频地址：https://www.bilibili.com/video/BV1bE411d7Py?p=43
+
+```c++
+
+```
+
+
+
 
 
 ### 数论题目

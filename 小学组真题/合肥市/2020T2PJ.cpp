@@ -1,12 +1,15 @@
 #include <iostream>
+#include <cstdio>
 using namespace std;
-int n, a[100005];
+int n, a[1000005];
+long long ans;
 int main() {
-    cin >> n;
+    scanf("%d", &n);
     for (int i = 1, j = 0; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
         if (a[i] != a[i - 1]) j = i - 1;
-        cout << j << " ";
+        ans += j;
     }
+    printf("%lld", ans);
     return 0;
 }
